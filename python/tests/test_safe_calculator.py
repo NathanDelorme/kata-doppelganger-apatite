@@ -1,7 +1,12 @@
-import pytest
+from safe_calculator import SafeCalculator
 
+class Authorizer:
+    def __init__(self, value):
+        self.value = value
+
+    def authorize(self):
+        return self.value
 
 def test_divide_should_not_raise_any_error_when_authorized():
-    # TODO: write a test that fails due to the bug in
-    # SafeCalculator.add
-    pass
+    calculator = SafeCalculator(authorizer=Authorizer(True))
+    calculator.add(1, 2)
